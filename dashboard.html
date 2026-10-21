@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard - SmartPantry AI</title>
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/dashboard.css" />
+</head>
+<body>
+
+<!-- Top Navbar -->
+<header class="navbar">
+    <div class="nav-brand">
+        <span>🍃</span> SmartPantry AI
+    </div>
+    <div class="nav-actions">
+        <span class="user-badge" id="nav-phone-display">+91 ----------</span>
+        <a href="scan.html" class="btn btn-primary" style="padding: 8px 14px; font-size: 13px;">+ Scan Item</a>
+        <button class="btn btn-outline" id="logout-btn" style="padding: 8px 12px; font-size: 13px;">Logout</button>
+    </div>
+</header>
+
+<main class="dashboard-container">
+
+    <!-- Metric Cards -->
+    <section class="stats-grid">
+        <div class="stat-card">
+            <span class="stat-title">Active Pantry Items</span>
+            <span class="stat-value" id="stat-active" style="color: var(--primary-color);">0</span>
+        </div>
+        <div class="stat-card">
+            <span class="stat-title">Expiring Soon</span>
+            <span class="stat-value" id="stat-expiring" style="color: #d97706;">0</span>
+        </div>
+        <div class="stat-card">
+            <span class="stat-title">Shopping Restock List</span>
+            <span class="stat-value" id="stat-restock" style="color: #2563eb;">0</span>
+        </div>
+    </section>
+
+    <!-- Priority Alerts (48h & Expired) -->
+    <section class="section-card">
+        <div class="section-header">
+            <h2 class="section-title">⚠️ Priority Alerts (Requires Action)</h2>
+        </div>
+        <div id="priority-alerts-list">
+            <!-- Rendered via JS -->
+        </div>
+    </section>
+
+    <!-- All Active Items Table -->
+    <section class="section-card">
+        <div class="section-header">
+            <h2 class="section-title">📦 Pantry Inventory</h2>
+        </div>
+        <div style="overflow-x: auto;">
+            <table class="inventory-table">
+                <thead>
+                <tr>
+                    <th>Product Name</th>
+                    <th>Category</th>
+                    <th>Remaining Units</th>
+                    <th>Expiry Date</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody id="inventory-table-body">
+                <!-- Rendered via JS -->
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Shopping Restock Section -->
+    <section class="section-card">
+        <div class="section-header">
+            <h2 class="section-title">🛒 Auto-Restock List</h2>
+            <span style="font-size: 12px; color: var(--text-muted);">Items ready for next grocery trip</span>
+        </div>
+        <ul id="shopping-list-display" style="padding-left: 20px; font-size: 13px; line-height: 1.8;">
+            <!-- Rendered via JS -->
+        </ul>
+    </section>
+
+</main>
+
+<!-- Auto-Restock Modal Dialog -->
+<div id="restock-modal" class="modal-overlay hidden">
+    <div class="modal-content">
+        <div style="font-size: 32px; margin-bottom: 6px;">🛒</div>
+        <h3 style="font-size: 18px; margin-bottom: 6px;">All Units Finished!</h3>
+        <p id="restock-modal-msg" style="font-size: 13px; color: var(--text-muted); line-height: 1.4;">
+            Item finished. Would you like to add it to your Shopping List?
+        </p>
+        <div class="modal-actions">
+            <button class="btn btn-primary" id="btn-add-restock">Add to List</button>
+            <button class="btn btn-outline" id="btn-skip-restock">Don't Add</button>
+        </div>
+    </div>
+</div>
+
+<script src="js/dashboard.js"></script>
+</body>
+</html>
+

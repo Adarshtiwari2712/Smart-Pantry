@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login - SmartPantry AI</title>
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/login.css" />
+</head>
+<body>
+
+<main class="login-wrapper">
+    <div class="login-card">
+
+        <div class="brand-logo">🍃 SmartPantry</div>
+
+        <!-- Step 1: Login Email Step -->
+        <section id="login-email-step">
+            <div class="login-header">
+                <h1>Welcome Back</h1>
+                <p>Apna registered email address enter karein.</p>
+            </div>
+
+            <form id="login-form">
+                <div class="form-group">
+                    <label class="form-label" for="login-email">Registered Email</label>
+                    <input type="email" id="login-email" class="form-input" placeholder="name@example.com" required />
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Send Login OTP</button>
+            </form>
+
+            <p class="footer-link">
+                New user? <a href="register.html">Create an Account</a>
+            </p>
+        </section>
+
+        <!-- Step 2: Login OTP Verification Step -->
+        <section id="login-otp-step" class="hidden">
+            <div class="login-header">
+                <h1>Enter Login OTP</h1>
+                <p>OTP sent to: <strong id="login-display-email">user@example.com</strong></p>
+            </div>
+
+            <form id="login-otp-form">
+                <div class="otp-container">
+                    <input type="text" class="otp-box" maxlength="1" inputmode="numeric" required />
+                    <input type="text" class="otp-box" maxlength="1" inputmode="numeric" required />
+                    <input type="text" class="otp-box" maxlength="1" inputmode="numeric" required />
+                    <input type="text" class="otp-box" maxlength="1" inputmode="numeric" required />
+                    <input type="text" class="otp-box" maxlength="1" inputmode="numeric" required />
+                    <input type="text" class="otp-box" maxlength="1" inputmode="numeric" required />
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Verify & Sign In</button>
+                <p class="footer-link">
+                    <a href="#" id="login-back-link">← Change Email</a>
+                </p>
+            </form>
+        </section>
+
+    </div>
+</main>
+
+<!-- Sirf login.js load hoga (Firebase/reCAPTCHA removed) -->
+<script src="js/login.js"></script>
+
+</body>
+</html>

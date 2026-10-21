@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register - SmartPantry</title>
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/register.css" />
+</head>
+<body>
+
+<main class="register-wrapper">
+    <div class="register-card">
+
+        <div class="brand-logo">🍃 SmartPantry</div>
+
+        <!-- Step 1: User Registration Details -->
+        <section id="reg-details-step">
+            <div class="register-header">
+                <h1>Create Account</h1>
+                <p>Apna name aur Email enter karein. Expiry alerts aur OTP isi email par aayenge.</p>
+            </div>
+
+            <form id="register-form">
+                <div class="form-group">
+                    <label class="form-label" for="reg-name">Full Name</label>
+                    <input type="text" id="reg-name" class="form-input" placeholder="e.g. Adarsh Tiwari" required />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="reg-email">Email Address</label>
+                    <input type="email" id="reg-email" class="form-input" placeholder="name@example.com" required />
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Get Registration OTP</button>
+            </form>
+
+            <p class="footer-link">
+                Already have an account? <a href="login.html">Login here</a>
+            </p>
+        </section>
+
+        <!-- Step 2: OTP Verification -->
+        <section id="reg-otp-step" class="hidden">
+            <div class="register-header">
+                <h1>Verify Email</h1>
+                <p>Humne OTP bheja hai: <strong id="reg-display-email">user@example.com</strong></p>
+            </div>
+
+            <form id="reg-otp-form">
+                <div class="otp-container">
+                    <input type="text" class="otp-box" maxlength="1" inputmode="numeric" required />
+                    <input type="text" class="otp-box" maxlength="1" inputmode="numeric" required />
+                    <input type="text" class="otp-box" maxlength="1" inputmode="numeric" required />
+                    <input type="text" class="otp-box" maxlength="1" inputmode="numeric" required />
+                    <input type="text" class="otp-box" maxlength="1" inputmode="numeric" required />
+                    <input type="text" class="otp-box" maxlength="1" inputmode="numeric" required />
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Verify & Register</button>
+                <p class="footer-link">
+                    <a href="#" id="reg-back-link">← Change Details</a>
+                </p>
+            </form>
+        </section>
+
+    </div>
+</main>
+
+<!-- Sirf register.js load hoga (Firebase / Recaptcha scripts hata di gayi hain) -->
+<script src="js/register.js"></script>
+</body>
+</html>

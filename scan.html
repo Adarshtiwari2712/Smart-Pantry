@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Scan Product - SmartPantry AI</title>
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/dashboard.css" />
+    <link rel="stylesheet" href="css/scan.css" />
+</head>
+<body>
+
+<!-- Top Navbar -->
+<header class="navbar">
+    <div class="nav-brand">
+        <span>🍃</span> SmartPantry AI
+    </div>
+    <div class="nav-actions">
+        <a href="dashboard.html" class="back-link">← Back to Dashboard</a>
+    </div>
+</header>
+
+<main class="scan-container">
+
+    <div class="scan-header">
+        <h1 style="font-size: 20px; font-weight: 700;">Add Product via Scan</h1>
+    </div>
+
+    <!-- Mode Tabs: Label Photo vs Barcode -->
+    <div class="mode-tabs">
+        <button type="button" class="mode-tab active" id="tab-label-ocr">📸 Packaging Label (AI Vision)</button>
+        <button type="button" class="mode-tab" id="tab-barcode">🏷️ Barcode Fallback</button>
+    </div>
+
+    <!-- Mode 1: Label Upload Zone -->
+    <section class="section-card" id="label-section">
+        <div class="dropzone" id="dropzone-area">
+            <div class="dropzone-icon">📷</div>
+            <div class="dropzone-title">Click to capture or upload packaging photo</div>
+            <div class="dropzone-desc">Photo mein Expiry Date, MFD ya 'Best Before' saaf aana chahiye</div>
+            <input type="file" id="file-input" accept="image/*" style="display: none;" />
+        </div>
+
+        <div class="preview-box hidden" id="preview-wrapper">
+            <img id="image-preview" class="preview-img" alt="Product packaging preview" />
+            <div style="margin-top: 10px;">
+                <button type="button" class="btn btn-outline" id="btn-reupload" style="font-size: 12px; padding: 6px 12px;">Choose Another Image</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mode 2: Barcode Input Zone -->
+    <section class="section-card hidden" id="barcode-section">
+        <div class="form-group">
+            <label class="form-label" for="barcode-input">Enter / Scan Barcode Number</label>
+            <input type="text" id="barcode-input" class="form-input" placeholder="e.g. 8901262010053" />
+        </div>
+        <button type="button" class="btn btn-primary" id="btn-fetch-barcode" style="width: 100%;">
+            Fetch Product Details (OpenFoodFacts)
+        </button>
+    </section>
+
+    <!-- AI Loading Indicator -->
+    <div class="loading-box hidden" id="loading-indicator">
+        <div class="spinner"></div>
+        <p style="font-size: 13px; color: var(--text-muted);">Spring AI Vision model packaging ko analyze kar raha hai...</p>
+    </div>
+
+    <!-- Step 2: Verification & Confirmation Sheet -->
+    <section class="result-card hidden" id="result-sheet">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+            <h2 style="font-size: 16px; font-weight: 700;">Verified AI Scan Result</h2>
+            <span class="confidence-tag">🟢 AI Confidence: 94%</span>
+        </div>
+
+        <form id="save-product-form">
+            <div class="form-group">
+                <label class="form-label" for="product-name">Detected Product Name</label>
+                <input type="text" id="product-name" class="form-input" required />
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                <div class="form-group">
+                    <label class="form-label" for="product-category">Category</label>
+                    <select id="product-category" class="form-input" style="background: #111827; color: #fff;">
+                        <option value="Dairy">Dairy</option>
+                        <option value="Bakery">Bakery</option>
+                        <option value="Beverages">Beverages</option>
+                        <option value="Snacks">Snacks</option>
+                        <option value="Pharmacy">Pharmacy</option>
+                        <option value="Personal Care">Personal Care</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="product-units">Quantity / Units</label>
+                    <input type="number" id="product-units" class="form-input" min="1" value="1" required />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="product-expiry">Resolved Expiry Date</label>
+                <input type="date" id="product-expiry" class="form-input" required />
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="product-tip">AI Usage / Safety Suggestion (Optional)</label>
+                <input type="text" id="product-tip" class="form-input" placeholder="e.g. Boil today or use for paneer" />
+            </div>
+
+            <div style="display: flex; gap: 10px; margin-top: 20px;">
+                <button type="submit" class="btn btn-primary" style="flex: 1;">Save To My Pantry</button>
+                <button type="button" class="btn btn-outline" id="btn-cancel-scan" style="flex: 1;">Cancel</button>
+            </div>
+        </form>
+    </section>
+
+</main>
+
+<script src="js/scan.js"></script>
+</body>
+</html>

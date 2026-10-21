@@ -1,0 +1,276 @@
+/* Deep Cyber-Dark Theme Variables */
+:root {
+    --bg-deep: #090d16;
+    --surface-card: #111827;
+    --surface-hover: #1e293b;
+    --surface-border: rgba(255, 255, 255, 0.08);
+
+    --emerald-neon: #10b981;
+    --emerald-glow: rgba(16, 185, 129, 0.2);
+    --amber-warn: #f59e0b;
+    --amber-glow: rgba(245, 158, 11, 0.15);
+    --rose-danger: #f43f5e;
+    --rose-glow: rgba(244, 63, 94, 0.15);
+    --cyan-accent: #06b6d4;
+
+    --text-pure: #f8fafc;
+    --text-muted: #94a3b8;
+    --text-dim: #64748b;
+
+    --radius-md: 12px;
+    --radius-lg: 18px;
+}
+
+body {
+    background-color: var(--bg-deep) !important;
+    color: var(--text-pure) !important;
+    background-image: radial-gradient(circle at 15% 15%, rgba(16, 185, 129, 0.05) 0%, transparent 40%),
+    radial-gradient(circle at 85% 85%, rgba(6, 182, 212, 0.04) 0%, transparent 45%);
+    background-attachment: fixed;
+}
+
+/* Glassmorphism Navbar */
+.navbar {
+    background: rgba(17, 24, 39, 0.8) !important;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--surface-border) !important;
+    padding: 16px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 19px;
+    font-weight: 700;
+    color: #ffffff !important;
+    text-shadow: 0 0 20px var(--emerald-glow);
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.user-badge {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--emerald-neon) !important;
+    background: rgba(16, 185, 129, 0.1) !important;
+    border: 1px solid rgba(16, 185, 129, 0.25);
+    padding: 6px 14px;
+    border-radius: 30px;
+}
+
+/* Main Container */
+.dashboard-container {
+    max-width: 1100px;
+    margin: 32px auto;
+    padding: 0 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+}
+
+/* Glowing Stats Grid */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 18px;
+}
+
+.stat-card {
+    background: var(--surface-card) !important;
+    border: 1px solid var(--surface-border) !important;
+    border-radius: var(--radius-md);
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(255, 255, 255, 0.18) !important;
+}
+
+.stat-title {
+    font-size: 11px;
+    color: var(--text-dim) !important;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.stat-value {
+    font-size: 28px;
+    font-weight: 800;
+}
+
+/* Section Cards with Sleek Border */
+.section-card {
+    background: var(--surface-card) !important;
+    border: 1px solid var(--surface-border) !important;
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--surface-border);
+    padding-bottom: 12px;
+}
+
+.section-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-pure) !important;
+}
+
+/* Dark Cyber Alert Box (Expiring Warning) */
+.alert-box {
+    background: var(--amber-glow) !important;
+    border: 1px solid rgba(245, 158, 11, 0.35) !important;
+    border-radius: var(--radius-md);
+    padding: 16px 20px;
+    margin-bottom: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 14px;
+}
+
+.alert-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #fde68a !important;
+}
+
+.alert-subtext {
+    font-size: 12px;
+    color: var(--text-muted) !important;
+    margin-top: 4px;
+}
+
+/* Neon Primary Button */
+.btn-primary {
+    background: var(--emerald-neon) !important;
+    color: #042f1a !important;
+    font-weight: 700 !important;
+    border: none;
+    box-shadow: 0 0 14px var(--emerald-glow);
+    transition: all 0.2s ease;
+}
+
+.btn-primary:hover {
+    background: #34d399 !important;
+    transform: translateY(-1px);
+    box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
+}
+
+/* Dark Outline Button */
+.btn-outline {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid var(--surface-border) !important;
+    color: var(--text-pure) !important;
+}
+
+.btn-outline:hover {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border-color: rgba(255, 255, 255, 0.25) !important;
+}
+
+/* Dark Inventory Table */
+.inventory-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    text-align: left;
+}
+
+.inventory-table th {
+    padding: 14px;
+    border-bottom: 1px solid var(--surface-border) !important;
+    color: var(--text-dim) !important;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: 0.5px;
+}
+
+.inventory-table td {
+    padding: 16px 14px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04) !important;
+    color: var(--text-pure);
+    vertical-align: middle;
+}
+
+.inventory-table tr:hover td {
+    background: var(--surface-hover);
+}
+
+.unit-tag {
+    background: rgba(255, 255, 255, 0.07) !important;
+    color: var(--cyan-accent) !important;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 12px;
+    border: 1px solid rgba(6, 182, 212, 0.2);
+}
+
+/* Custom Status Badges in Dark */
+.status-badge {
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.badge-fresh {
+    background: rgba(16, 185, 129, 0.15) !important;
+    color: #34d399 !important;
+    border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.badge-warning {
+    background: rgba(245, 158, 11, 0.15) !important;
+    color: #fbbf24 !important;
+    border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+/* Modal in Dark Theme */
+.modal-overlay {
+    background: rgba(0, 0, 0, 0.75) !important;
+    backdrop-filter: blur(8px);
+}
+
+.modal-content {
+    background: #111827 !important;
+    border: 1px solid var(--surface-border) !important;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6) !important;
+    color: var(--text-pure);
+}
+
+.modal-content h3 {
+    color: #ffffff;
+}
+
+.modal-content p {
+    color: var(--text-muted) !important;
+}
