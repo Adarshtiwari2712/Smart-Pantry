@@ -12,6 +12,8 @@ public class User {
     private String name;
     private String phoneNumber;//primary identification
     private LocalDateTime createdAt;
+    private String email;
+
 
     public User(){
         this.createdAt = LocalDateTime.now();
@@ -60,4 +62,11 @@ public class User {
     }
 
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 }

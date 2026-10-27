@@ -33,10 +33,17 @@ public class AuthService {
             return ApiResponse.error("Yeh phone number already registered hai!");
         }
 
+
         // Step C: Save user in MongoDB
         User newUser = new User(request.getName(), request.getPhoneNumber());
+
+        // Save email for expiry reminders
+        newUser.setEmail(request.getEmail());
+
         User savedUser = userRepository.save(newUser);
+
         return ApiResponse.success("Registration successful!", savedUser);
+
     }
 
     // 2. Login User with OTP verification
@@ -54,5 +61,42 @@ public class AuthService {
         }
 
         return ApiResponse.success("Login successful!", userOptional.get());
+    }
+
+
+    // Register user after email OTP has already been verified
+    public ApiResponse<User> registerWithEmail(String name, String email) {
+
+        // Step A: Check whether email is already registered
+        if (userRepository.existsByEmail(email)) {
+            return ApiResponse.error("Yeh email already registered hai!");
+        }
+
+        // Step B: Create user
+        User newUser = new User();
+        newUser.setName(name);
+        newUser.setEmail(email);
+
+        // Step C: Save user in MongoDB
+        User savedUser = userRepository.save(newUser);
+
+        return ApiResponse.success("Registration successful!", savedUser);
+    }
+
+
+    public ApiResponse<User> loginWithEmail(String email) {
+
+        Optional<User> user = userRepository.findByEmail(email);
+
+        if (user.isPresent()) {
+            return ApiResponse.success(
+                    "Login successful!",
+                    user.get()
+            );
+        }
+
+        return ApiResponse.error(
+                "Email not registered. Please register first."
+        );
     }
 }

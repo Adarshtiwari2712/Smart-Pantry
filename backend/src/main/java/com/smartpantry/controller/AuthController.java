@@ -23,6 +23,10 @@ public class AuthController {
 
 
     @Autowired
+    private AuthService authService;
+
+
+    @Autowired
     private EmailService emailService;
     // 1. Send OTP API: POST http://localhost:8084
     // 84/api/auth/send-otp
@@ -33,15 +37,36 @@ public class AuthController {
     }
 
     //2. verify OTP
+
+
     @PostMapping("/verify-otp")
-    public ResponseEntity<String> verifyOtp(@RequestParam String email, @RequestParam String otp) {
+    public ResponseEntity<String> verifyOtp(
+            @RequestParam String email,
+            @RequestParam String otp,
+            @RequestParam String name) {
+
+        // Step A: Verify the email OTP
         boolean isValid = otpService.verifyOtp(email, otp);
-        if (isValid) {
-            return ResponseEntity.ok("OTP verified successfully!");
-        } else {
-            return ResponseEntity.badRequest().body("Invalid or expired OTP");
+
+        if (!isValid) {
+            return ResponseEntity.badRequest()
+                    .body("Invalid or expired OTP");
         }
+
+        // Step B: Register the user in MongoDB
+        ApiResponse<User> result =
+                authService.registerWithEmail(name, email);
+
+        // Step C: Return the registration result
+        if (result.isSuccess()) {
+            return ResponseEntity.ok("Registration successful!");
+        }
+
+        return ResponseEntity.badRequest()
+                .body(result.getMessage());
     }
+
+
     @PostMapping("/test-expiry-alert")
     public ResponseEntity<String> testExpiryAlert(@RequestParam String email, @RequestParam String item) {
         boolean sent = emailService.sendExpiryAlertEmail(
@@ -55,6 +80,30 @@ public class AuthController {
         } else {
             return ResponseEntity.internalServerError().body("Failed to send email");
         }
+    }
+    @PostMapping("/login-verify-otp")
+    public ResponseEntity<String> loginVerifyOtp(
+            @RequestParam String email,
+            @RequestParam String otp) {
+
+        // Step A: Verify email OTP
+        boolean isValid = otpService.verifyOtp(email, otp);
+
+        if (!isValid) {
+            return ResponseEntity.badRequest()
+                    .body("Invalid or expired OTP");
+        }
+
+        // Step B: Find existing user
+        ApiResponse<User> result =
+                authService.loginWithEmail(email);
+
+        if (result.isSuccess()) {
+            return ResponseEntity.ok("Login successful!");
+        }
+
+        return ResponseEntity.badRequest()
+                .body(result.getMessage());
     }
 }
 

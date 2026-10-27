@@ -1,3 +1,4 @@
+
 package com.smartpantry.repository;
 
 import com.smartpantry.model.ProductItem;
@@ -7,16 +8,32 @@ import org.springframework.stereotype.Repository;
 import java.time.LocalDate;
 import java.util.List;
 
-
 @Repository
-public interface ProductRepository extends MongoRepository<ProductItem, String> {
+public interface ProductRepository
+        extends MongoRepository<ProductItem, String> {
 
-    //ek specific user ke active products fetch krne ke liye (Dashboard ke liye)
-    List<ProductItem> findByUserIdAndStatus(String userId, String status);
+    // Fetch active products belonging to a particular user
+    List<ProductItem> findByUserIdAndStatus(
+            String userId,
+            String status
+    );
 
-    //cron scheduler ke liye sare active products jo expire hone wale hain
-    List<ProductItem> findByStatusAndExpiryDateLessThanEqual(String status, LocalDate date);
+    // Fetch active products expiring on or before a given date
+    List<ProductItem> findByStatusAndExpiryDateLessThanEqual(
+            String status,
+            LocalDate date
+    );
 
-    List<ProductItem> findByStatusAndAlertStage(String status, int alertStage);
+    // Find products by their current reminder stage
+    List<ProductItem> findByStatusAndAlertStage(
+            String status,
+            int alertStage
+    );
 
+    // Find products with an exact expiry date and reminder stage
+    List<ProductItem> findByStatusAndExpiryDateAndAlertStage(
+            String status,
+            LocalDate expiryDate,
+            int alertStage
+    );
 }

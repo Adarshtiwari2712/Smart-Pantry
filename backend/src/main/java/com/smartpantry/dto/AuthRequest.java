@@ -6,6 +6,7 @@ import jakarta.validation.constraints.Pattern;
 public class AuthRequest {
 
     private String name;
+    private String email;
 
     @NotBlank(message = "Phone number is required")
     @Pattern(regexp = "^(\\+91)?[6-9]\\d{9}$", message = "Valid Indian mobile number is required")
@@ -43,5 +44,13 @@ public class AuthRequest {
 
     public void setOtp(String otp) {
         this.otp = otp;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
