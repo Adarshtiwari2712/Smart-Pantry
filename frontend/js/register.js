@@ -116,9 +116,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
 
                 // Spring Boot Controller @RequestParam email aur otp expect karta hai
-                const response = await fetch(`${API_BASE_URL}/verify-otp?email=${encodeURIComponent(email)}&otp=${encodeURIComponent(otpVal)}`, {
-                    method: 'POST'
-                });
+
+                const response = await fetch(
+                    `${API_BASE_URL}/verify-otp?email=${encodeURIComponent(email)}&otp=${encodeURIComponent(otpVal)}&name=${encodeURIComponent(name)}`,
+                    {
+                        method: 'POST'
+                    }
+                );
+
 
                 const responseText = await response.text();
 
